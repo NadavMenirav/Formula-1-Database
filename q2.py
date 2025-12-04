@@ -9,11 +9,10 @@ if __name__ == '__main__':
         port='3307',
     )
     cursor = mydb.cursor()
-    # Using Distinct because we only want to return one appearance of each driver
     cursor.execute("""
         SELECT DISTINCT Driver
         FROM drivers_updated
-        WHERE Nationality = 'BRA'
+        WHERE Nationality = 'ITA'
     """)
     print(', '.join(str(row) for row in cursor.fetchall()))
     cursor.close()
