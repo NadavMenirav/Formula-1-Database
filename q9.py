@@ -10,6 +10,15 @@ if __name__ == '__main__':
     )
     cursor = mydb.cursor()
 
+    # This query calculates statistics per driver nationality.
+    # First CTE (avg_points_for_each_nation) computes the average points per nationality from drivers_updated.
+    # Second CTE (fastest_lap_for_each_nation) finds the minimum fastest lap time per nationality by joining drivers_updated with fastest_laps_updated.
+    # Third CTE (most_recent_win_for_each_nation) finds the most recent win date per nationality by joining drivers_updated with winners.
+    # The main query then LEFT JOINs all three CTEs on nationality to return, for each nationality:
+    # - avg_pts: average points
+    # - min_time: fastest lap
+    # - latest: most recent win
+    # LEFT JOIN ensures that nationalities without fastest laps or wins still appear, with NULL in those columns.
 
     cursor.execute("""
         WITH avg_points_for_each_nation AS (
