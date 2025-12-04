@@ -13,7 +13,7 @@ if __name__ == '__main__':
     cursor.execute("""
         SELECT DISTINCT Driver
         FROM drivers_updated
-        WHERE Nationality = 'BRA'
+        WHERE Nationality = 'BRA';
     """)
     print(', '.join(str(row) for row in cursor.fetchall()))
     cursor.close()
